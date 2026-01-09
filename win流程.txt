@@ -1,0 +1,54 @@
+1. wsl 进入 ubuntu
+2. sudo apt install docker.io 安装docker
+3. 安装 docker compose
+sudo apt update
+sudo apt install -y docker-compose-plugin
+如果失败按以下流程
+==============================
+1️⃣ 卸载可能存在的旧残留（安全起见）
+sudo apt remove -y docker docker-engine docker.io containerd runc
+
+2️⃣ 安装依赖工具
+sudo apt update
+sudo apt install -y ca-certificates curl gnupg lsb-release
+
+3️⃣ 添加 Docker 官方 GPG key
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+4️⃣ 添加 Docker 官方 APT 源（关键一步）
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+5️⃣ 更新索引并安装 Compose v2 插件
+sudo apt update
+sudo apt install -y docker-compose-plugin
+
+6️⃣ 验证（这一步必须成功）
+docker compose version
+==============================
+
+# Launch Hummingbot
+sudo docker compose up -d
+
+sudo docker attach hummingbot
+
+设置密码， 启动
+
+connect hyperliquid_perpetual
+
+api_wallet
+
+Vault address? no
+
+arb wallet address: 0x63EdE7b7D901c9fFDC36c711656dBCa8eA134013
+
+api_wallet private_key: 自己生成的evm地址私钥
+
+连上了以后， 测试
+
+balance
